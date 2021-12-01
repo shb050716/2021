@@ -362,6 +362,7 @@ header .title:nth-child(3){
 
 #unesco label:hover{
     width: 340px;
+    justify-content: space-around;
     background-color: #033e8c;
     color: #ffffff;
 }
@@ -373,6 +374,7 @@ header .title:nth-child(3){
 
 #unesco .uneText{
     display: flex;
+    justify-content: space-around;
 }
 
 #unesco .circle .uneList{
@@ -383,11 +385,12 @@ header .title:nth-child(3){
     display : flex;
 }
 
-#unesco label:hover .circle{
-    justify-content: space-around;
+
+#unesco .uneList span{
+    font-weight: 500;
+    font-size: 15px;
+    text-align: left;
 }
-
-
 /*섹션(NEWS)*/
 #news{
     position: relative;
