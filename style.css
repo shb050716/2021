@@ -15,6 +15,7 @@
 .fd {flex-direction: column;}
 .fv {justify-content: space-evenly;}
 .fp {flex-wrap: wrap;}
+.fa{justify-content: space-around;}
 
 .container{
     width: 100%;
@@ -333,7 +334,7 @@ header .title:nth-child(3){
 
 .circleBox img{
     width: 340px;
-    height: 160px;
+    height: 150px;
     border-radius: 100rem;
     object-fit: cover;
 }
@@ -350,7 +351,46 @@ header .title:nth-child(3){
     align-items: center;
     justify-content: center;
 }
+#unesco input[type=checkbox]{
+    display: none;
+}
 
+#unesco label,
+#unesco .imgBox img{
+    transition: .3s;
+}
+
+#unesco label:hover{
+    width: 340px;
+    justify-content: space-around;
+    background-color: #033e8c;
+    color: #ffffff;
+}
+
+
+#unesco input[type=checkbox]:hover ~ .imgBox img{
+    width: 150px;
+}
+
+#unesco .uneText{
+    display: flex;
+    justify-content: space-around;
+}
+
+#unesco .circle .uneList{
+    display: none;
+}
+
+#unesco label:hover .uneList{
+    display : flex;
+}
+
+
+#unesco .uneList span{
+    font-weight: bolder;
+    font-size: 15px;
+    text-align: left;
+}
 /*섹션(NEWS)*/
 #news{
     position: relative;
