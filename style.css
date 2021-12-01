@@ -387,7 +387,7 @@ header .title:nth-child(3){
 
 
 #unesco .uneList span{
-    font-weight: bolder;
+    font-weight: 500;
     font-size: 15px;
     text-align: left;
 }
