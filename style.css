@@ -69,6 +69,7 @@ header{
 }
 
 .naviBottom{
+    position: relative;
     width: 1585px;
     height: 50%;
 }
@@ -124,9 +125,9 @@ header .radioHover{
     padding: 0 2rem;
 }
 
-header [type=radio]:hover ~ .naviBox{
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+header [type=radio]:hover ~ .naviBox {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 
@@ -149,6 +150,11 @@ header .radioHover:hover {
     max-width: 25%;
     padding: 15px;
 }
+
+header .naviBottom .radioHover a{
+    text-decoration: none;
+}
+
 .firstRadio{
     margin-left: 2rem;
 }
@@ -171,11 +177,6 @@ header .radioHover:hover {
     color: #0e0e0e;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-left: 1rem;
-}
-
-
-.radioHover2{
     margin-left: 1rem;
 }
 
