@@ -1,27 +1,63 @@
-*{
-    margin : 0;
-    padding : 0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-.f, .fs , .fc, .fe , .fas ,.fac , .fae, .fw,.fd{display: flex;
+
+.f, .fs, .fc, .fe, .fas, .fac, .fae, .fw, .fd {
+    display: flex;
 }
-.fs{justify-content: flex-start;}
-.fc{justify-content: center;}
-.fe{justify-content: flex-end;}
-.fas{align-items: flex-start;}
-.fac{align-items: center;}
-.fae{align-items: flex-end;}
-.fw{justify-content: space-between;}
-.fd {flex-direction: column;}
-.fv {justify-content: space-evenly;}
-.fp {flex-wrap: wrap;}
-.fa{justify-content: space-around;}
+
+.fs {
+    justify-content: flex-start;
+}
+
+.fc {
+    justify-content: center;
+}
+
+.fe {
+    justify-content: flex-end;
+}
+
+.fas {
+    align-items: flex-start;
+}
+
+.fac {
+    align-items: center;
+}
+
+.fae {
+    align-items: flex-end;
+}
+
+.fw {
+    justify-content: space-between;
+}
+
+.fd {
+    flex-direction: column;
+}
+
+.fv {
+    justify-content: space-evenly;
+}
+
+.fp {
+    flex-wrap: wrap;
+}
+
+.fa {
+    justify-content: space-around;
+}
 
 @font-face {
     font-family: notoSans;
     src: url("./public/vendor/fonts/NotoSansCJKkr-hinted/NotoSansCJKkr-Regular.otf");
     font-weight: normal;
 }
+
 @font-face {
     font-family: notoSans;
     src: url("./public/vendor/fonts/NotoSansCJKkr-hinted/NotoSansCJKkr-bold.otf");
@@ -39,8 +75,9 @@
     src: url("./public/vendor/fonts/NotoSansCJKkr-hinted/NotoSansCJKkr-DemiLight.otf");
     font-weight: 300;
 }
-body{
-    position:relative;
+
+body {
+    position: relative;
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -49,7 +86,7 @@ body{
     overflow-x: hidden;
 }
 
-header{
+header {
     width: 100%;
     height: 820px;
 }
@@ -60,39 +97,39 @@ header{
 /*}*/
 
 /*메뉴*/
-.naviBar{
+.naviBar {
     z-index: 10;
-    position:fixed;
+    position: fixed;
     width: 100%;
     height: 140px;
 }
 
-.naviTop{
+.naviTop {
     width: 1585px;
     height: 50%;
 }
 
-.naviTop select{
+.naviTop select {
     font-size: 16px;
-    border: 0 solid rgba(255,255,255,.5);
+    border: 0 solid rgba(255, 255, 255, .5);
     border-radius: 5px;
     background-color: transparent;
     color: #f7f7f7;
     padding: 5px;
 }
 
-.login a{
+.login a {
     color: #ffffff;
     text-decoration-line: none;
 }
 
-.naviBottom{
+.naviBottom {
     position: relative;
     width: 1585px;
     height: 50%;
 }
 
-.naviBox{
+.naviBox {
     position: relative;
     height: 100%;
     border: 2px solid #ddd;
@@ -102,7 +139,7 @@ header{
     font-size: 1.2rem;
 }
 
-.naviBox a{
+.naviBox a {
     position: relative;
     color: #ddd;
     font-size: 1.2rem;
@@ -110,15 +147,16 @@ header{
     text-decoration-line: none;
 }
 
-.hoverEffect{
+.hoverEffect {
     position: relative;
 }
 
-.hoverEffect:hover:before{
+.hoverEffect:hover:before {
     left: 0;
     right: 0;
 }
-.hoverEffect:before{
+
+.hoverEffect:before {
     content: "";
     position: absolute;
     left: 51%;
@@ -129,7 +167,7 @@ header{
     transition: 0.3s;
 }
 
-header .radioHover{
+header .radioHover {
     height: 0;
     overflow: hidden;
     position: absolute;
@@ -159,39 +197,40 @@ header .radioHover:hover {
     border: 1px solid #888;
 }
 
-[type = radio]:not(.none){
+[type = radio]:not(.none) {
     display: none;
 }
 
-.hoverPadding{
+.hoverPadding {
     flex: 0 0 25%;
     max-width: 25%;
     padding: 15px;
 }
 
-header .naviBottom .radioHover a{
+header .naviBottom .radioHover a {
     text-decoration: none;
 }
 
-.firstRadio{
+.firstRadio {
     margin-left: 2rem;
 }
 
-.firstRadio a{
+.firstRadio a {
     margin-bottom: 1rem;
 }
 
-.radioHover1 a span{
+.radioHover1 a span {
     color: #0e0e0e;
     font-size: 1.2rem;
     font-weight: bold;
 }
-.firstRadio a span{
+
+.firstRadio a span {
     font-weight: normal;
     font-size: 0.9rem;
 }
 
-.radioHover2 a span{
+.radioHover2 a span {
     color: #0e0e0e;
     font-size: 1.2rem;
     font-weight: bold;
@@ -204,38 +243,41 @@ header .naviBottom .radioHover a{
     font-weight: bold;
 }
 
-.radioHover3 .hoverEffect{
+.radioHover3 .hoverEffect {
     padding-bottom: 1rem;
 }
 
-.Hover3Text a{
+.Hover3Text a {
     margin-left: 1rem;
     margin-bottom: 1rem;
 }
 
-.Hover3Text a span{
+.Hover3Text a span {
     font-weight: normal;
     font-size: 0.9rem;
 }
 
-.radioHover4 a span{
+.radioHover4 a span {
     color: #0e0e0e;
     font-size: 1.2rem;
     font-weight: bold;
 }
-.radioHover5 a span{
+
+.radioHover5 a span {
     color: #0e0e0e;
     font-size: 1.2rem;
     font-weight: bold;
 }
+
 /*메인비주얼*/
-.mainBOX{
+.mainBOX {
     width: 100%;
     height: 820px;
     position: relative;
     overflow: hidden;
 }
-header .title{
+
+header .title {
     position: absolute;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -244,16 +286,18 @@ header .title{
     top: 0;
     bottom: 0;
 }
-header .title:nth-child(1){
+
+header .title:nth-child(1) {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./public/image/visual/1.jpg') center/cover;
     animation: visual 9s infinite;
 }
-header .title:nth-child(2){
+
+header .title:nth-child(2) {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./public/image/visual/2.jpg') center/cover;
     animation: visual 9s -6s infinite;
 }
 
-header .title:nth-child(3){
+header .title:nth-child(3) {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./public/image/visual/3.jpg') center/cover;
     animation: visual 9s -3s infinite;
 }
@@ -280,13 +324,13 @@ header .title:nth-child(3){
     }
 }
 
-.visualTitleBox{
+.visualTitleBox {
     margin-top: 10px;
     margin-bottom: 12px;
 }
 
 
-.visualBox span{
+.visualBox span {
     text-shadow: 0 0 3px #000000;
     background: none;
     color: #F25041;
@@ -296,27 +340,27 @@ header .title:nth-child(3){
     padding: 5px 10px;
 }
 
-.visualBox h2{
+.visualBox h2 {
     text-shadow: 0 0 5px #000000;
     line-height: 1.3;
     color: #ddd;
     font-size: 3rem;
 }
 
-.visualTextBox p{
+.visualTextBox p {
     color: #ddd;
     text-shadow: 0 0 3px #000000;
     font-weight: bold;
 }
 
 /*섹션(유네스코~~)*/
-#unesco{
+#unesco {
     position: relative;
     width: 100%;
     height: 920px;
 }
 
-.unescoBox{
+.unescoBox {
     position: absolute;
     top: 15%;
     left: 50%;
@@ -324,18 +368,18 @@ header .title:nth-child(3){
     font-size: 1.5rem;
 }
 
-.unescoBox h3{
+.unescoBox h3 {
     font-weight: 900;
 }
 
-.unescoBox span{
+.unescoBox span {
     margin-left: 20px;
     font-size: 1.9rem;
     font-weight: bold;
     color: #878787;
 }
 
-.unescoCircleBox{
+.unescoCircleBox {
     position: absolute;
     top: 25%;
     left: 50%;
@@ -344,19 +388,19 @@ header .title:nth-child(3){
     height: 555px;
 }
 
-.circleBox{
+.circleBox {
     width: 100%;
     height: 33.333%;
 }
 
-.circleBox img{
+.circleBox img {
     width: 340px;
     height: 150px;
     border-radius: 100rem;
     object-fit: cover;
 }
 
-.circle{
+.circle {
     font-size: 1.2rem;
     font-weight: bold;
     width: 150px;
@@ -368,16 +412,17 @@ header .title:nth-child(3){
     align-items: center;
     justify-content: center;
 }
-#unesco input[type=checkbox]{
+
+#unesco input[type=checkbox] {
     display: none;
 }
 
 #unesco label,
-#unesco .imgBox img{
+#unesco .imgBox img {
     transition: .3s;
 }
 
-#unesco label:hover{
+#unesco label:hover {
     width: 340px;
     justify-content: space-around;
     background-color: #033e8c;
@@ -385,65 +430,66 @@ header .title:nth-child(3){
 }
 
 
-#unesco input[type=checkbox]:hover ~ .imgBox img{
+#unesco input[type=checkbox]:hover ~ .imgBox img {
     width: 150px;
 }
 
-#unesco .uneText{
+#unesco .uneText {
     display: flex;
     justify-content: space-around;
 }
 
-#unesco .circle .uneList{
+#unesco .circle .uneList {
     display: none;
 }
 
-#unesco label:hover .uneList{
-    display : flex;
+#unesco label:hover .uneList {
+    display: flex;
 }
 
-#unesco .uneList span{
+#unesco .uneList span {
     font-weight: bolder;
     font-size: 15px;
     text-align: left;
 }
+
 /*섹션(NEWS)*/
-#news{
+#news {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./public/image/news/bg.jpg') center/cover;
     width: 100%;
     height: 820px;
 }
 
-.newsTitle{
+.newsTitle {
 }
 
-.newsTitle h3{
+.newsTitle h3 {
     color: #ddd;
     font-size: 1.7rem;
     font-weight: bold;
     margin-right: 20px;
 }
 
-.newsTitle{
+.newsTitle {
     width: 1135px;
     margin-bottom: 25px;
 }
 
-.newsTitle p{
+.newsTitle p {
     color: #7c7c7c;
     font-size: 1.7rem;
     font-weight: bold;
 }
 
-.newsBox{
+.newsBox {
     width: 1135px;
     height: 485px;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.selectBar{
+.selectBar {
     width: 285px;
     height: 100%;
 }
@@ -460,15 +506,15 @@ header .title:nth-child(3){
 /*}*/
 
 
-.selectBar .select:first-child{
+.selectBar .select:first-child {
     border-top-left-radius: 25px;
 }
 
-.selectBar .select:last-child{
+.selectBar .select:last-child {
     border-bottom-left-radius: 25px;
 }
 
-.selectBar .select{
+.selectBar .select {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -477,29 +523,29 @@ header .title:nth-child(3){
     height: 25%;
 }
 
-.select_color p{
+.select_color p {
     color: #ffffff;
     font-size: 1.4rem;
     font-weight: bold;
 }
 
-.select p{
+.select p {
     font-size: 1.4rem;
     font-weight: bold;
 }
 
-.newsTextBox{
+.newsTextBox {
     width: 785px;
     height: 190px;
 }
 
-.selectBigBox{
+.selectBigBox {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.selectBox{
+.selectBox {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -510,47 +556,49 @@ header .title:nth-child(3){
 .newsTextBox1:first-child,
 .newsTextBox2:first-child,
 .newsTextBox3:first-child,
-.newsTextBox4:first-child{
+.newsTextBox4:first-child {
     margin-bottom: 30px;
 }
 
 .newsTextBox1,
 .newsTextBox2,
-.newsTextBox4{
+.newsTextBox4 {
     width: 785px;
     height: 50%;
 }
-.newsTextBox3{
+
+.newsTextBox3 {
     width: 785px;
     height: 100%;
 }
 
 .textBox,
-.textSmallBox{
+.textSmallBox {
     font-weight: 300;
 }
 
-.newsTextBox4 .textBox{
+.newsTextBox4 .textBox {
     position: relative;
 }
 
-.newsTextBox4 .textBox p{
+.newsTextBox4 .textBox p {
     margin-top: 2rem;
 }
 
-.textSmallBox{
+.textSmallBox {
     position: absolute;
     left: 1rem;
 }
 
-.newsTextBox3 .textColorBox{
+.newsTextBox3 .textColorBox {
     margin-left: 25px;
 }
 
-.newsTextBox3 .textBox{
+.newsTextBox3 .textBox {
     position: relative;
 }
-.newsTextBox3 .textBox p{
+
+.newsTextBox3 .textBox p {
     text-align: center;
 
     position: absolute;
@@ -559,7 +607,7 @@ header .title:nth-child(3){
     top: 35%;
 }
 
-.newsTextBox4 .textSmallBox{
+.newsTextBox4 .textSmallBox {
     border: 1px solid #f25143;
     border-radius: 30px;
     color: #f25143;
@@ -567,7 +615,7 @@ header .title:nth-child(3){
     padding: 0.15rem 0.5rem;
 }
 
-.textBox{
+.textBox {
     background-color: #ffffff;
     border-radius: 20px;
     width: 245px;
@@ -580,13 +628,14 @@ header .title:nth-child(3){
     align-items: flex-end;
 }
 
-.textColorBox{
+.textColorBox {
     background-color: #f25041;
     border-radius: 20px;
     width: 245px;
     height: 190px;
     box-shadow: 0 0 5px gray;
 }
+
 .cross {
     color: #ffffff;
     width: 245px;
@@ -595,7 +644,7 @@ header .title:nth-child(3){
     font-size: 10rem;
 }
 
-.newsView span{
+.newsView span {
     margin-bottom: 10px;
 }
 
@@ -603,23 +652,23 @@ header .title:nth-child(3){
     transition: .3s;
 }
 
-#news input[for=newsBox1]{
+#news input[for=newsBox1] {
     background-color: #000000;
 }
 
-#news .selectBar label{
+#news .selectBar label {
     transition: .3s;
 }
 
 #newsBox1:checked ~ .selectBar label[for=newsBox1],
 #newsBox2:checked ~ .selectBar label[for=newsBox2],
 #newsBox3:checked ~ .selectBar label[for=newsBox3],
-#newsBox4:checked ~ .selectBar label[for=newsBox4]{
+#newsBox4:checked ~ .selectBar label[for=newsBox4] {
     background-color: #033e8c;
     color: #ffffff;
 }
 
-#news .newsView{
+#news .newsView {
     opacity: 0;
 }
 
@@ -627,7 +676,7 @@ header .title:nth-child(3){
 #newsBox1:checked ~ .selectBigBox .selectBox .newsTextBox1,
 #newsBox2:checked ~ .selectBigBox .selectBox .newsTextBox2,
 #newsBox3:checked ~ .selectBigBox .selectBox .newsTextBox3,
-#newsBox4:checked ~ .selectBigBox .selectBox .newsTextBox4{
+#newsBox4:checked ~ .selectBigBox .selectBox .newsTextBox4 {
     opacity: 1;
 }
 
@@ -635,73 +684,74 @@ header .title:nth-child(3){
 /*섹션(EVENT)*/
 
 
-#event{
+#event {
     position: relative;
     background-color: #ffffff;
     width: 100%;
     height: 910px;
 }
-.eventText{
+
+.eventText {
     width: 100%;
     height: 100%;
 }
 
-.eventText span:nth-child(1){
+.eventText span:nth-child(1) {
     position: absolute;
     left: -1%;
     top: -5%;
 }
 
-.eventText span:nth-child(2){
+.eventText span:nth-child(2) {
     position: absolute;
     right: -1%;
     bottom: -5%;
 }
 
-.eventText span{
+.eventText span {
     z-index: 0;
     font-size: 18rem;
     font-weight: 700;
-    color: rgba(0,0,0,.03);
+    color: rgba(0, 0, 0, .03);
 }
 
-.eventRect{
+.eventRect {
     margin-top: 2rem;
     width: 1100px;
     height: 530px;
 }
 
-.event_T h3{
+.event_T h3 {
     font-weight: bold;
     font-size: 2rem;
 }
 
-.event_T p{
+.event_T p {
     color: #888888;
     font-size: 2rem;
     font-weight: bold;
     margin-left: 1rem;
 }
 
-.eventLine{
+.eventLine {
     width: 100%;
     height: 50%;
 }
 
-.eventLine:nth-child(1){
+.eventLine:nth-child(1) {
     margin-top: 60px;
 }
 
-.eventLine .LineBox:nth-child(2){
+.eventLine .LineBox:nth-child(2) {
     margin-left: 30px;
     margin-right: 30px;
 }
 
-.eventLine .LineBox:nth-child(3){
+.eventLine .LineBox:nth-child(3) {
     margin-right: 30px;
 }
 
-.LineBox{
+.LineBox {
     position: relative;
     width: 25%;
     height: 240px;
@@ -725,103 +775,112 @@ header .title:nth-child(3){
     background-color: #dc3545;
 }
 
-.circle_blue{
+.circle_blue {
     background-color: #0074ff;
 }
 
-.circle_green{
+.circle_green {
     background-color: #30a346;
 }
 
-.smallCircle p{
+.smallCircle p {
     /*text-align: center;*/
     color: #ffffff;
     font-weight: 600;
 }
 
-.LineBox h5{
+.LineBox h5 {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.boxText h5{
+.boxText h5 {
     text-align: center;
 }
 
-.boxText p{
+.boxText p {
     text-align: center;
     margin-bottom: 1rem;
 }
 
-.eventLine label{
+.eventLine .lineBox {
     position: relative;
     transition: .3s;
 }
 
-#event input[type=checkbox]{
+#event input[type=checkbox] {
     display: none;
 }
 
-.eventLine:first-child label:nth-child(1):hover{
+.eventLine:first-child label:nth-child(1):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/1.jpg') center/cover;
 }
-.eventLine:first-child label:nth-child(2):hover{
+
+.eventLine:first-child label:nth-child(2):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/2.jpg') center/cover;
 }
-.eventLine:first-child label:nth-child(3):hover{
+
+.eventLine:first-child label:nth-child(3):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/3.jpg') center/cover;
 }
-.eventLine:first-child label:nth-child(4):hover{
+
+.eventLine:first-child label:nth-child(4):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/4.jpg') center/cover;
 }
-.eventLine:last-child label:nth-child(1):hover{
+
+.eventLine:last-child label:nth-child(1):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/5.jpg') center/cover;
 }
-.eventLine:last-child label:nth-child(2):hover{
+
+.eventLine:last-child label:nth-child(2):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/6.jpg') center/cover;
 }
-.eventLine:last-child label:nth-child(3):hover{
+
+.eventLine:last-child label:nth-child(3):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/7.jpg') center/cover;
 }
-.eventLine:last-child label:nth-child(4):hover{
+
+.eventLine:last-child label:nth-child(4):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/8.jpg') center/cover;
 }
 
 
-.eventLine label:hover .boxText{
+.eventLine label:hover .boxText {
     display: none;
 }
 
-.eventLine label:hover .boxText ~ .eventButton{
-    opacity: 1;
+.eventLine label:hover .boxText ~ .eventButton {
+    opacity: 1 !important;
 }
 
-#event .eventButton{
+#event .eventButton {
     position: absolute;
     border: 1px solid #ffffff;
+    border-radius: 25px;
+    opacity: 0;
     color: #ffffff;
     transition: .3s;
-    opacity: 0;
+    padding: 2px .5rem;
 }
 
 /*섹션(팝업존)*/
-#popup{
+#popup {
     background-color: #ffffff;
     width: 100%;
     height: 690px;
 }
 
-.popup_text{
+.popup_text {
     margin-bottom: 1rem;
 }
 
-.popup_text h3{
+.popup_text h3 {
     font-weight: bold;
     font-size: 2rem;
 }
 
-.popup_text p{
+.popup_text p {
     color: #888888;
     font-size: 2rem;
     font-weight: bold;
@@ -829,74 +888,97 @@ header .title:nth-child(3){
 }
 
 
-.popupImgBox{
+.popupImgBox {
     width: 100%;
     height: 600px;
 }
 
-.popupImgBox img{
-    object-fit: cover;
-    width: 25%;
+.popupBox {
+    position: relative;
     height: 100%;
 }
 
+.popupBox img:nth-child(1) {
+}
+
+.popupImgBox .popupBox {
+    width: 25%;
+}
+
+.popupImgBox .popupBox .popupOpacity {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#popup .popupBox img:last-child {
+    transition: .3s;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+}
+
 /*섹션(BANNER)*/
-#banner{
+#banner {
     position: relative;
     background-color: #ffffff;
     width: 100%;
     height: 335px;
 }
 
-.banner_text h3{
+.banner_text h3 {
     font-weight: bold;
     font-size: 2rem;
 }
 
-.banner_text p{
+.banner_text p {
     color: #888888;
     font-size: 2rem;
     font-weight: bold;
     margin-left: 1rem;
 }
 
-.bannerBigBox{
+.bannerBigBox {
     position: absolute;
     height: 90px;
     left: 400px;
     top: 120px;
 }
 
-.bannerBox{
+.bannerBox {
     width: 1100px;
     height: 50px;
-    border: 1px solid#cccccc;
+    border: 1px solid #cccccc;
 
 }
+
 /*푸터*/
-footer{
+footer {
     background-color: #161616;
     width: 100%;
     height: 315px;
 }
 
-.img_icon{
+.img_icon {
     margin-top: 30px;
     color: #ffffff;
     width: 1130px;
 }
 
-.icon i:nth-child(2){
+.icon i:nth-child(2) {
     margin-left: 15px;
     margin-right: 15px;
 }
 
-.footerBox{
+.footerBox {
     width: 100%;
     height: 100%;
 }
 
-.footer_box{
+.footer_box {
     width: 1130px;
     height: 70px;
     border: 1px solid #888888;
@@ -909,18 +991,18 @@ footer{
     margin-left: 50px;
 }
 
-.footer_li{
+.footer_li {
     padding-right: 1.5rem;
 }
 
-.footer_li a{
+.footer_li a {
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
     color: #ffffff;
 }
 
-.footer_select{
+.footer_select {
     background: none;
     border: none;
     border-left: 1px solid #888888;
@@ -930,7 +1012,7 @@ footer{
     padding-left: 1rem;
 }
 
-.footer_bottom{
+.footer_bottom {
     width: 1130px;
     color: #888888;
     margin-bottom: 3rem;
