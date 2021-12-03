@@ -181,7 +181,8 @@ header .radioHover {
     padding: 0 2rem;
 }
 
-header [type=radio]:hover ~ .naviBox {
+header [type=radio]:hover ~ .naviBox,
+header .radioHover:hover ~ .naviBox{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -806,12 +807,17 @@ header .title:nth-child(3) {
 
 .eventLine .lineBox {
     position: relative;
-    transition: .3s;
 }
 
 #event input[type=checkbox] {
-    display: none;
+    opacity: 0;
 }
+
+
+#event .LineBox > *:not(.smallCircle):not(.eventButton){
+    transition: .3s;
+}
+
 
 .eventLine:first-child label:nth-child(1):hover {
     background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('./public/image/event/1.jpg') center/cover;
@@ -846,16 +852,23 @@ header .title:nth-child(3) {
 }
 
 
-.eventLine label:hover .boxText {
-    display: none;
+#event .eventLine label:hover .boxText ~ .eventButton {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%);
+}
+#event .eventLine label:hover .boxText{
+    transform: translateY(25%);
 }
 
-.eventLine label:hover .boxText ~ .eventButton {
-    opacity: 1 !important;
+.eventLine label:hover .boxText {
+    opacity: 0;
 }
 
 #event .eventButton {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
     border: 1px solid #ffffff;
     border-radius: 25px;
     opacity: 0;
@@ -898,35 +911,60 @@ header .title:nth-child(3) {
     height: 100%;
 }
 
-.popupBox img:nth-child(1) {
+.popupBox img {
 }
+
+/*#popup .circleImg img{*/
+/*    transition: .3s;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    bottom: 50%;*/
+/*    object-fit: cover;*/
+/*    width: 300px;*/
+/*    height: 300px;*/
+/*}*/
 
 .popupImgBox .popupBox {
     width: 25%;
 }
 
 .popupImgBox .popupBox .popupOpacity {
+    transition: .3s;
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
 
-#popup .popupBox img:last-child {
+#popup .popupBox .circleImg {
     transition: .3s;
     position: absolute;
+    left: 50%;
     top: 50%;
-    bottom: 50%;
     object-fit: cover;
     width: 300px;
     height: 300px;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+#popup .popupBox:hover .popupOpacity {
+    filter: brightness(0.4);
+}
+
+#popup .popupBox:hover .circleImg {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 /*섹션(BANNER)*/
 #banner {
-    position: relative;
     background-color: #ffffff;
     width: 100%;
     height: 335px;
+}
+
+.bannerArea {
+    position: relative;
+    width: 1920px;
+    height: 100%;
 }
 
 .banner_text h3 {
@@ -943,18 +981,98 @@ header .title:nth-child(3) {
 
 .bannerBigBox {
     position: absolute;
-    height: 90px;
+    height: 100px;
     left: 400px;
-    top: 120px;
+    bottom: 120px;
 }
 
 .bannerBox {
+    overflow: hidden;
     width: 1100px;
-    height: 50px;
+    height: 50%;
     border: 1px solid #cccccc;
-
 }
 
+.bannerBox img {
+    width: 180px;
+    height: 50px;
+    transition: .3s;
+}
+
+.bannerBox img:hover {
+    transform: scale(1.2);
+}
+
+.bannerAnimation:nth-child(1) {
+    animation: bannerAni 20s infinite;
+    width: calc(180px * 10);
+}
+
+@keyframes bannerAni {
+    0% {
+        margin-left: calc(-180px * 0);
+    }
+    5% {
+        margin-left: calc(-180px * 0);
+    }
+    10% {
+        margin-left: calc(-180px * 1);
+    }
+    15% {
+        margin-left: calc(-180px * 1);
+    }
+    20% {
+        margin-left: calc(-180px * 2);
+    }
+    25% {
+        margin-left: calc(-180px * 2);
+    }
+    30% {
+        margin-left: calc(-180px * 3);
+    }
+    35% {
+        margin-left: calc(-180px * 3);
+    }
+    40% {
+        margin-left: calc(-180px * 4);
+    }
+    45% {
+        margin-left: calc(-180px * 4);
+    }
+    50% {
+        margin-left: calc(-180px * 5);
+    }
+    55% {
+        margin-left: calc(-180px * 5);
+    }
+    60% {
+        margin-left: calc(-180px * 6);
+    }
+    65% {
+        margin-left: calc(-180px * 6);
+    }
+    70% {
+        margin-left: calc(-180px * 7);
+    }
+    75% {
+        margin-left: calc(-180px * 7);
+    }
+    80% {
+        margin-left: calc(-180px * 8);
+    }
+    85% {
+        margin-left: calc(-180px * 8);
+    }
+    90% {
+        margin-left: calc(-180px * 9);
+    }
+    95% {
+        margin-left: calc(-180px * 9);
+    }
+    100% {
+        margin-left: calc(-180px * 10);
+    }
+}
 /*푸터*/
 footer {
     background-color: #161616;
