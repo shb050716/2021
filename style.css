@@ -90,6 +90,9 @@ header {
     width: 100%;
     height: 820px;
 }
+section:not(.height) {
+    min-height: 100vh;
+}
 
 /*.title{*/
 /*    width: 100%;*/
