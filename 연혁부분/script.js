@@ -9,6 +9,7 @@ function event(){
         .on('click', '.modal-footer .btn-primary', modalSave)
 }
 
+
 function HistoryRegistration () {
     $('.modal').modal('show');
 }
@@ -16,5 +17,4 @@ function HistoryRegistration () {
 function modalSave () {
     let saveHistory = $('.modal-body .input_name').val();
     $('.modal').modal('hide');
-    localStorage
 }
