@@ -41,12 +41,12 @@
             <h1>2021년</h1>
         </div>
         <div class="bodyContents fd">
-            <div class="bodyText f">
-                <span>-01.19</span>
-                <span>부산 해외취업지원센터, 일학습과정개발센터 신설</span>
-                <input type="button" value="수정">
-                <input type="button" value="삭제">
-            </div>
+<!--            <div class="bodyText f">-->
+<!--                <span>-01.19</span>-->
+<!--                <span class="localText">부산 해외취업지원센터, 일학습과정개발센터 신설</span>-->
+<!--                <input type="button" class = "correction" value="수정">-->
+<!--                <input type="button" value="삭제">-->
+<!--            </div>-->
         </div>
         <img src="./개구리리리.gif" alt="">
     </div>
@@ -54,7 +54,7 @@
 </body>
 </html>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade Mou" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,13 +65,38 @@
                 </button>
             </div>
             <div class="modal-body fd">
-                연혁내용 : <input type="text" class="input_name form-control" required>
-                연혁일자 : <input type="text" class="input_juso form-control " required>
+                연혁내용 : <input type="text" class="input_name form-control modal1_Text" required>
+                연혁일자 : <input type="date" class="input_juso form-control " required>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-primary">저장</button>
+                <button type="button" class="btn btn-primary first">저장</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade correction Mo"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">연혁 수정</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body fd">
+                연혁내용 : <input type="text" class="input_name form-control modal2_Text" required>
+                연혁일자 : <input type="date" class="input_juso form-control " required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary second">저장</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
