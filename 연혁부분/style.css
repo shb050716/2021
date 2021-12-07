@@ -113,3 +113,24 @@
 .modal-backdrop.in{
     opacity: 0;
 }
+
+.date span{
+    margin-right: 1rem;
+}
+
+.localText{
+    margin-right: 1rem;
+}
+
+#year table thead tr th {
+    cursor: pointer;
+}
+
+.tableColor{
+    background-color: gray;
+    color: #ddd;
+}
+
+#year table input[type=radio]{
+    display: none;
+}

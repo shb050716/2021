@@ -1,13 +1,21 @@
+let id = 0;
 $(function () {
     event();
     let saveLocal = getData('data');
-    let saveIdx = getData('idx');
+    let yearLocal = getData('year');
+    let checkLocal = getData('check');
     if (saveLocal === null || saveLocal === undefined) {
         localStorage.data = JSON.stringify([]);
     }
-    if (saveIdx === null || saveIdx === undefined) {
-        localStorage.idx = JSON.stringify([]);
+    if (yearLocal === null || yearLocal === undefined) {
+        localStorage.year = JSON.stringify([]);
     }
+    if (checkLocal === null || checkLocal === undefined) {
+        localStorage.check = JSON.stringify([]);
+    }
+    view();
+    yearView();
+    yearTitle();
 })
 
 const getData = (storage) => {
@@ -20,7 +28,9 @@ function event() {
         .on('click', '.yearButton', HistoryRegistration)
         .on('click', '.first', modal1Save)
         .on('click', '.bodyText .correction', modalCorrection)
-        .on('click','.second',modal2Save)
+        .on('click', '.second', modal2Save)
+        .on('click', '.localDelete' , storageDelete)
+        .on('click', '#year table thead tr th', yearClick)
 }
 
 function HistoryRegistration() {
@@ -29,41 +39,127 @@ function HistoryRegistration() {
 
 function modalCorrection() {
     $('.Mo').modal('show');
+    id = $(this).parents('.bodyText').attr('data-id');
+}
+
+function storageDelete () {
+    id = $(this).parents('.bodyText').attr('data-id');
+    let warning = window.confirm('연혁을 삭제하시겠습니까?');
+    let localData = JSON.parse(localStorage.data);
+    if (warning === true){
+        localData.splice(id,1);
+        localStorage.data = JSON.stringify(localData);
+    }
+    view();
+}
+
+
+function view() {
+    let localData = JSON.parse(localStorage.data);
+    let localCheck = JSON.parse(localStorage.check);
+    let viewText = ``;
+    console.log(localCheck);
+    localData.forEach((e, idx) => {
+            viewText += `<div class="bodyText f" data-id="${idx}">
+            <div class="date">
+                <span>${e.date}</span>
+            </div>
+            <span class="localText">${e.text}</span>
+            <input type="button" class="correction" value="수정">
+                <input class="localDelete" type="button" value="삭제">
+            </div>`;
+    })
+    $('.bodyContents').html(viewText);
+}
+function yearView () {
+    let localYear = JSON.parse(localStorage.year);
+    console.log(localYear);
+    let saveYear = $('.modal1_date').val();
+    let year = saveYear.split('-')[0];
+    let yearTable = ``;
+    let yearRadio = ``;
+    localYear.forEach((e,idx) => {
+        // yearRadio += `<input type="radio" name="year" id="${e}">`
+        yearTable += `<th data-id="${e}">${e}년</th>`
+    })
+    console.log(yearTable);
+    // $('#year table').prepend(yearRadio);
+    $('#year table thead tr').html(yearTable);
+    $('input[name="year"]').each((id, item) => {
+        console.log(id, item);
+    } )
+    console.log();
+}
+
+function yearTitle () {
+    let localCheck = JSON.parse(localStorage.check);
+    let title = ``;
+    title += `<h1>${localCheck}년</h1>`
+    $('.bodyTitle').html(title);
 }
 
 function modal1Save() {
     let localData = JSON.parse(localStorage.data);
-    let localIdx = JSON.parse(localStorage.idx);
+    let localYear = JSON.parse(localStorage.year);
     let saveHistory = $('.modal1_Text').val();
-    let viewText = ``;
-    let id_history = 0;
+    let saveYear = $('.modal1_date').val();
+    let localIdx = 0;
+    if (saveHistory === '' && saveYear === '') {
+        return
+    }
     if (saveHistory === '') {
         return
     }
-    localData.forEach((e,idx) => {
-        console.log(e);
-        viewText += `<div class="bodyText f" data-id="${idx}">
-            <span>-01.19</span>
-            <span class="localText">${e}</span>
-            <input type="button" class="correction" value="수정">
-                <input type="button" value="삭제">
-            </div>`
-        id_history ++;
+    if (saveYear === '') {
+        return
+    }
+    localData.forEach(() => {
+        localIdx++;
     })
-    localData.push(saveHistory);
-    localIdx.push(id_history);
+    localData.push({'text': saveHistory, 'date': saveYear, 'idx': localIdx, 'year' : saveYear.split('-')[0]});
     localStorage.data = JSON.stringify(localData);
-    localStorage.idx = JSON.stringify(localIdx);
+
+    let year = saveYear.split('-')[0];
+    localYear.push(year);
+    let set = new Set(localYear);
+    localYear = JSON.parse(JSON.stringify([...set]));
+    localStorage.year = JSON.stringify(localYear);
+    yearView();
+    view();
+    yearTitle();
     $('.Mou').modal('hide');
-    $('.bodyContents').html(viewText);
 }
 
-
-
-function modal2Save (){
+function modal2Save() {
+    let localData = JSON.parse(localStorage.data);
     let modal_save = $('.modal2_Text').val();
-    if(modal_save === ''){
+    let modal_date = $('.modal2_date').val();
+    if (modal_save === '' && modal_date) {
+        return
+    }
+    if (modal_date === '') {
+        return
+    }
+    if (modal_save === '') {
         return
     }
     $('.Mo').modal('hide');
+    localData[id].text = localData[id].text = modal_save;
+    localData[id].date = localData[id].date = modal_date;
+    localStorage.data = JSON.stringify(localData);
+    view();
+    yearView();
 }
+
+function yearClick () {
+    let localData = JSON.parse(localStorage.data);
+    let localCheck = JSON.parse(localStorage.check);
+    $('table th').removeClass('tableColor');
+    $(this).addClass('tableColor');
+    localStorage.check = JSON.stringify($(this).attr('data-id'));
+    yearTitle();
+    if(localData.year === localCheck) {
+        view();
+    }
+}
+
