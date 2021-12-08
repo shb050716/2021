@@ -33,9 +33,7 @@ function firstCheck () {
     let localYear = JSON.parse(localStorage.year);
     localYear.forEach(e => {
         if(e === localCheck){
-            if($('#year table th').attr('data-id') === localCheck){
-                $('#year table th').addClass('tableColor');
-            }
+            $(`#year table th[data-id=${localCheck}]`).addClass('tableColor');
         }
     })
 }
