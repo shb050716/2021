@@ -81,7 +81,8 @@ function view() {
     localData.forEach((e, idx) => {
         localData.sort((a,b) => {
             let a_release = a['date']
-            let b_release = new Date(b).getTime();
+
+          let b_release = new Date(b).getTime();
             return a_release - b_release;
         })
         localDate.push(e.date);
