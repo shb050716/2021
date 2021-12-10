@@ -5,6 +5,7 @@ $(function () {
     let yearLocal = getData('year');
     let checkLocal = getData('check');
     let dateLocal = getData('date');
+    let deleteLocal = getData('saveYear');
     if (saveLocal === null || saveLocal === undefined) {
         localStorage.data = JSON.stringify([]);
     }
@@ -17,6 +18,10 @@ $(function () {
     if (dateLocal === null || dateLocal === undefined) {
         localStorage.date = JSON.stringify([]);
     }
+    if (deleteLocal === null || deleteLocal === undefined) {
+        localStorage.saveYear = JSON.stringify([]);
+    }
+
     view();
     yearView();
     yearTitle();
@@ -59,14 +64,39 @@ function modalCorrection() {
 
 function storageDelete() {
     id = $(this).parents('.bodyText').attr('data-id');
-    let warning = window.confirm('연혁을 삭제하시겠습니까?');
     let localData = JSON.parse(localStorage.data);
-    if (warning === true) {
-        localData.splice(id, 1);
+    let localCheck = JSON.parse(localStorage.check);
+    let localSaveYear = [];
+    localData.forEach(e => {
+        localSaveYear.push(e.year);
+    });
+    let warning = window.confirm('연혁을 삭제하시겠습니까?');
+
+    console.log(localSaveYear.includes(localCheck));
+    if(warning === true){
+        localData.splice(id,1);
+        localSaveYear.splice(id,1);
         localStorage.data = JSON.stringify(localData);
+        localStorage.saveYear = JSON.stringify(localSaveYear);
     }
+    viewDelete();
+    yearView();
+    yearTitle();
     view();
 }
+function viewDelete() {
+    let localCheck = JSON.parse(localStorage.check);
+    let localYear = JSON.parse(localStorage.year);
+    let localSaveYear = JSON.parse(localStorage.saveYear);
+
+    if(localSaveYear.includes(localCheck) === false){
+        let deleteYear = localYear.indexOf(localCheck);
+        localYear.splice(deleteYear,1);
+        localStorage.check = JSON.stringify('');
+        localStorage.year = JSON.stringify(localYear);
+    }
+}
+
 
 
 function view() {
@@ -76,13 +106,12 @@ function view() {
     let viewText = ``;
     let check = false;
 
+    localData.sort((a,b) => {
+        let a_date = Number(a['date'].split('-').join(''));
+        let b_date = Number(b['date'].split('-').join(''));
+        return a_date - b_date;
+    })
     localData.forEach((e, idx) => {
-        localData.sort((a,b) => {
-            let a_release = a['date']
-
-          let b_release = new Date(b).getTime();
-            return a_release - b_release;
-        })
         localDate.push(e.date);
         if (e.year === localCheck) {
             check = true;
@@ -101,49 +130,30 @@ function view() {
             </div>`;
         }
     })
-
-    // localDate.forEach(e => {
-    //     let arrSort = Number(e.split('-').join(''));
-    //     sortArr.push(JSON.parse(JSON.stringify(arrSort)));
-    // })
-    // sortArr.sort(function(a,b) {
-    //     return a - b;
-    // })
-    // localDate = JSON.parse(JSON.stringify(sortArr));
-
-
     $('.bodyContents').html(viewText);
-
 }
 
 function yearView() {
     let localYear = JSON.parse(localStorage.year);
     let saveYear = $('.modal1_date').val();
-    let year = saveYear.split('-')[0];
     let yearTable = ``;
-    let yearRadio = ``;
     localYear.forEach((e, idx) => {
-        // yearRadio += `<input type="radio" name="year" id="${e}">`
         yearTable += `<th data-id="${e}">${e}년</th>`
     })
-    // $('#year table').prepend(yearRadio);
     $('#year table thead tr').html(yearTable);
-    $('input[name="year"]').each((id, item) => {
-        console.log(id, item);
-    })
-    console.log();
 }
 
 function yearTitle() {
     let localCheck = JSON.parse(localStorage.check);
     let title = ``;
-    title += `<h1>${localCheck}년</h1>`
+    title += `<h1>${localCheck}</h1>`
     $('.bodyTitle').html(title);
 }
 
 function modal1Save() {
     let localData = JSON.parse(localStorage.data);
     let localYear = JSON.parse(localStorage.year);
+    let localYearSave = JSON.parse(localStorage.saveYear);
     let saveHistory = $('.modal1_Text').val();
     let saveYear = $('.modal1_date').val();
     let localIdx = 0;
@@ -160,6 +170,8 @@ function modal1Save() {
         localIdx++;
     })
     localData.push({'text': saveHistory, 'date': saveYear, 'idx': localIdx, 'year': saveYear.split('-')[0]});
+    localYearSave.push(saveYear.split('-')[0]);
+    localStorage.saveYear = JSON.stringify(localYearSave);
     localStorage.data = JSON.stringify(localData);
 
     let year = saveYear.split('-')[0];
@@ -172,10 +184,10 @@ function modal1Save() {
     view();
     yearView();
     yearTitle();
+    firstCheck();
 }
 
 function modal2Save() {
-    let localData = JSON.parse(localStorage.data);
     let modal_save = $('.modal2_Text').val();
     let modal_date = $('.modal2_date').val();
     if (modal_save === '' && modal_date) {
@@ -187,12 +199,48 @@ function modal2Save() {
     if (modal_save === '') {
         return
     }
+    viewCorrection();
     $('.Mo').modal('hide');
-    localData[id].text = localData[id].text = modal_save;
-    localData[id].date = localData[id].date = modal_date;
-    localStorage.data = JSON.stringify(localData);
+
     view();
     yearView();
+    firstCheck();
+    yearTitle();
+}
+function viewCorrection () {
+    let localData = JSON.parse(localStorage.data);
+    let localYear = JSON.parse(localStorage.year);
+    let localCheck = JSON.parse(localStorage.check);
+    let localSaveYear = JSON.parse(localStorage.saveYear);
+    let modal_save = $('.modal2_Text').val();
+    let modal_date = $('.modal2_date').val();
+
+    localData[id].text = modal_save;
+    let textDate = localData[id].date = modal_date;
+    let textYear = localData[id].year = textDate.split('-')[0];
+    localStorage.data = JSON.stringify(localData);
+    if(localData[id].year !== localCheck){
+        localCheck = textYear;
+        localYear.push(textYear);
+        localStorage.check = JSON.stringify(localCheck);
+    }
+    let localArr = [];
+    localData.forEach(e => {
+        localArr.push(e.year);
+    })
+    let difference = localYear.filter(x => !localArr.includes(x)).join('');
+    console.log(localYear.filter(x => !localArr.includes(x)), localArr, localYear);
+    let localIdx = localYear.indexOf(difference);
+    localYear.forEach(e => {
+        if(textYear !== e){
+            if(difference !== -1 || difference !== ''){
+                localYear.splice(localIdx,1);
+                localStorage.year = JSON.stringify(localYear);
+            }
+        }
+    })
+    let set = new Set(localYear);
+    localStorage.year = JSON.stringify([...set]);
 }
 
 function yearClick() {
