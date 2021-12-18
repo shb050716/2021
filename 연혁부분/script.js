@@ -73,6 +73,7 @@ function storageDelete() {
     let warning = window.confirm('연혁을 삭제하시겠습니까?');
 
     console.log(localSaveYear.includes(localCheck));
+    console.log(warning);
     if(warning === true){
         localData.splice(id,1);
         localSaveYear.splice(id,1);
@@ -229,16 +230,17 @@ function viewCorrection () {
         localArr.push(e.year);
     })
     let difference = localYear.filter(x => !localArr.includes(x)).join('');
-    console.log(localYear.filter(x => !localArr.includes(x)), localArr, localYear);
+    console.log(difference, localYear, localArr);
     let localIdx = localYear.indexOf(difference);
     localYear.forEach(e => {
         if(textYear !== e){
-            if(difference !== -1 || difference !== ''){
+            if(localIdx !== -1 || difference !== ''){
                 localYear.splice(localIdx,1);
                 localStorage.year = JSON.stringify(localYear);
             }
         }
     })
+    console.log(difference,localYear, localArr);
     let set = new Set(localYear);
     localStorage.year = JSON.stringify([...set]);
 }
