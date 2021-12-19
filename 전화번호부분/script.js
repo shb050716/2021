@@ -1,82 +1,109 @@
 $(() => {
-    // $.ajax({
-    //     url : '/2021년 지방대회 문제/restAPI/phone.php',
-    //     success : function (json) {
-    //         viewPhone(JSON.parse(json));
-    //         event();
-    //     }
-    // })
     viewPhone();
     event();
 });
-const viewPhone = (json) => {
-    $.ajax({
-        url: '/2021년 지방대회 문제/restAPI/phone.php',
-        success: function (json) {
-            json = JSON.parse(json);
-            const statusCd = json.statusCd;
-            const statusMsg = json.statusMsg;
-            const totalCount = json.totalCount;
-            const items = json.items;
-            console.log(statusCd, statusMsg, totalCount, items);
-            console.log(json);
-            if (statusCd !== '200' && statusMsg !== '정상') {
-                return
+const viewPhone = async (val) => {
+    let json = await fetch('/2021년 지방대회 문제/restAPI/phone.php')
+        .then(amugona => amugona.json());
+    const statusCd = json.statusCd;
+    const statusMsg = json.statusMsg;
+    const totalCount = json.totalCount;
+    const items = json.items;
+    if (statusCd !== '200' && statusMsg !== '정상') {
+        return
+        // alert(`${statusCd} error 다시시도해주세요 오류메세지(errorMsg): ${statusMsg} :(`);
+        // $("<a href='/2021년 지방대회 문제/index.html'></a>")[0].click();
+    }
+
+    //탭 생성
+    let itemArr = [];
+    items.forEach((e, idx) => {
+        itemArr.push(items[idx].deptNm);
+    })
+    let itemsArr = new Set(itemArr);
+    itemArr = JSON.parse(JSON.stringify([...itemsArr]));
+
+    let phoneHtml = ``;
+    phoneHtml = `<th data-id="0">전체</th>`;
+    itemArr.forEach((e, idx) => {
+        phoneHtml += `<th data-id="${idx + 1}">${e}</th>`;
+    })
+    console.log(itemArr);
+    $('#headerTable table tr').html(phoneHtml);
+    //내용 생성
+    let item = json.items;
+    let bodyHtml = ``;
+    let titleHtml = ``;
+
+    let titleArr = [];
+    items.forEach(e => {
+        titleArr.push(e.deptNm);
+    })
+    //배열정리
+    let resArr = [];
+    itemArr.forEach(e => {
+        resArr.push({'deptNm': e, 'Arr': []});
+    })
+    resArr.forEach((e, idx) => {
+        item.forEach(e2 => {
+            if (e.deptNm === e2.deptNm) {
+                e.Arr.push(e2);
             }
-
-            //탭 생성
-            let itemArr = [];
-            items.forEach((e, idx) => {
-                itemArr.push(items[idx].deptNm);
+        })
+    })
+    //리스트쓰기
+    resArr.forEach((e, idx) => {
+        if(val === '전체') {
+            titleHtml += `  
+                <div class="bodyTitleBox">
+                    <div class="bodyTitle">
+                        <h3>${e.deptNm}</h3>
+                    </div>
+                    <div class="bodyBorder"></div>
+                </div>
+                <div class="bodyPhone f">`
+            e.Arr.forEach(e2 => {
+                titleHtml += `<div class="phoneBox fc fac">
+                <span>${e2.name}</span>
+                <span class="phoneLine"></span>
+                <span>${e2.telNo}</span>
+            </div>`
             })
-            let itemsArr = new Set(itemArr);
-            itemArr = JSON.parse(JSON.stringify([...itemsArr]));
-
-            let phoneHtml = ``;
-            itemArr.forEach((e, idx) => {
-                phoneHtml += `<th data-id="${idx}">${e}</th>`;
+            titleHtml += `</div>`
+        }
+        if (val === e.deptNm) {
+            titleHtml += `  
+                <div class="bodyTitleBox">
+                    <div class="bodyTitle">
+                        <h3>${e.deptNm}</h3>
+                    </div>
+                    <div class="bodyBorder"></div>
+                </div>
+                <div class="bodyPhone f">`
+            e.Arr.forEach(e2 => {
+                titleHtml += `<div class="phoneBox fc fac">
+                <span>${e2.name}</span>
+                <span class="phoneLine"></span>
+                <span>${e2.telNo}</span>
+            </div>`
             })
-            $('#headerTable table tr').append(phoneHtml);
-
-            //내용 생성
-            tabClick(json);
+            titleHtml += `</div>`
         }
     })
+    $('.bodyBox').html(titleHtml);
 }
 
-function tabClick(json) {
+function tabClick() {
     $('#headerTable table th').removeClass('tableColor');
     $(this).addClass('tableColor');
-    let items = json.items;
-    let tabHtml = ``;
-    let check = false;
-    let tabText = $(this)[0].innerText;
-    console.log($(this)[0].innerText);
-    items.forEach(e => {
-        if(tabText === e.deptNm){
-            check = true;
-        }
-        if(check === false){
-            return
-        }
-        tabHtml += `<div class="bodyTitle">
-            <h3>${e.deptNm}</h3>
-        </div>
-        <div class="bodyBorder"></div>
-    </div>
-    <div class="bodyPhone fw">
-        <div class="phoneBox fc fac">
-            <span>${e.name}</span>
-            <span class="phoneLine"></span>
-            <span>${e.telNo}</span>
-        </div>`
-    })
-    $('.bodyBox').html(tabHtml);
+    let text = $(this).text();
+    viewPhone(text);
 }
 
 
-const event = (json) => {
+const event = () => {
     $(document)
+        .on('click', '#headerTable table tr th', viewPhone)
         .on('click', '#headerTable table tr th', tabClick)
 }
 
