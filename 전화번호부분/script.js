@@ -4,15 +4,15 @@ $(() => {
 });
 const viewPhone = async (val) => {
     let json = await fetch('/2021년 지방대회 문제/restAPI/phone.php')
-        .then(amugona => amugona.json());
+        .then(data => data.json());
     const statusCd = json.statusCd;
     const statusMsg = json.statusMsg;
     const totalCount = json.totalCount;
     const items = json.items;
     if (statusCd !== '200' && statusMsg !== '정상') {
-        return
-        // alert(`${statusCd} error 다시시도해주세요 오류메세지(errorMsg): ${statusMsg} :(`);
-        // $("<a href='/2021년 지방대회 문제/index.html'></a>")[0].click();
+        // return
+        alert(`${statusCd} error 다시시도해주세요 오류메세지(errorMsg): ${statusMsg} :(`);
+        $("<a href='/2021년 지방대회 문제/index.html'></a>")[0].click();
     }
 
     //탭 생성
@@ -28,7 +28,6 @@ const viewPhone = async (val) => {
     itemArr.forEach((e, idx) => {
         phoneHtml += `<th data-id="${idx + 1}">${e}</th>`;
     })
-    console.log(itemArr);
     $('#headerTable table tr').html(phoneHtml);
     //내용 생성
     let item = json.items;
