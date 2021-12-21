@@ -1,5 +1,4 @@
-const view = async (pageNum) => {
-    pageNum = pageNum - 1;
+const view = async (pageNum = 0) => {
     let dataUrl = `./무형문화재_현황/nihList.xml`;
     const xmlData = await dataLoad(dataUrl);
     let xmlTotalCnt = $(xmlData).find('totalCnt').text();
@@ -17,6 +16,7 @@ const view = async (pageNum) => {
         })
     })
 
+
     //페이지 갯수
     let viewPage = 8;
     let maxPage = Math.ceil(xmlTotalCnt / viewPage);
@@ -24,11 +24,25 @@ const view = async (pageNum) => {
     let pageHtml = ``;
     pageHtml += `<input class="buttonBox" type="button" value="<<">`;
     for (let i = 0; i < maxPage; i++) {
-        pageHtml += `<input class="buttonBox" type="button" value="${i + 1}">`;
+        if(pageNum !== (i + 1)){
+            pageHtml += `<input class="buttonBox" type="button" value="${i + 1}">`;
+        }
+        else if (pageNum === (i + 1)){
+            console.log(i);
+            pageHtml += `<input class="buttonBox buttonColor" type="button" value="${i + 1}">`;
+
+        }
     }
     pageHtml += `<input class="buttonBox" type="button" value=">>">`
     $('.footerBox').html(pageHtml);
 
+    //페이지 현황?
+    let pageNumber = pageNum -1;
+    let nowPage = ``;
+    nowPage += `<p>총 ${listArr.length}건 </p>
+                <p>${pageNumber + 1}p / </p>
+                <p>${maxPage}p</p>`
+    $('.nowPage').html(nowPage);
     //페이지네이션
     let pageArr = [];
     let listImg = ``;
@@ -42,25 +56,22 @@ const view = async (pageNum) => {
         pageArr.push(imageUrl.slice(viewPage * i, (viewPage) * (i + 1)));
     }
 
-
-    for(let i = 0; i < arrSlice[pageNum ].length; i++){
-        let imgUrlXml = `./무형문화재_현황/detail/${arrSlice[pageNum][i].ccbaKdcd}_${arrSlice[pageNum][i].ccbaCtcd}_${arrSlice[pageNum][i].ccbaAsno}.xml`;
+    for(let i = 0; i < arrSlice[pageNumber].length; i++){
+        let imgUrlXml = `./무형문화재_현황/detail/${arrSlice[pageNumber][i].ccbaKdcd}_${arrSlice[pageNumber][i].ccbaCtcd}_${arrSlice[pageNumber][i].ccbaAsno}.xml`;
         let data = await dataLoad(imgUrlXml);
         imageUrl = $(data).find('imageUrl').text();
-        if(imageUrl !== ''){
             listImg += ` <div class="imgBigBox fd fac">
-                <div class="imgBox"><img src="./무형문화재_현황/nihcImage/${imageUrl}" alt=""></div>
-                <p>${arrSlice[pageNum][i].ccbaMnm1}</p>
+                <div class="imgBox"><img src="./무형문화재_현황/nihcImage/${imageUrl}" onerror="this.src='./무형문화재_현황/no_image.png'"></div>
+                <p>${arrSlice[pageNumber][i].ccbaMnm1}</p>
             </div>`
-        }
-        if(imageUrl === ''){
-            listImg += ` <div class="imgBigBox fd fac">
-                <div class="imgBox fc fac"><p>no image</p></div>
-                <p>${arrSlice[pageNum][i].ccbaMnm1}</p>
-            </div>`
-        }
     }
+    console.log(arrSlice);
     $('.bodyImgBox').html(listImg);
+
+}
+
+function noImage () {
+    // $('img').attr('src','./무형문화재_현황/no_image.png');
 
 }
 
@@ -87,7 +98,6 @@ const dataLoad = async (urls) => {
             dataType: "xml",
             success: function (data) {
                 return res(data);
-
             }
         })
     })
