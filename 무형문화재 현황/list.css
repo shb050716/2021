@@ -75,7 +75,8 @@
 }
 
 .imgBigBox{
-    width: 20%;
+    padding: 1rem;
+    width: 25%;
     height: 250px;
 }
 
@@ -97,4 +98,11 @@
 .buttonBox{
     width: 50px;
     height: 40px;
+}
+
+.imgBigBox img{
+    border-radius: 1rem;
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
 }
